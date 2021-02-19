@@ -1,0 +1,27 @@
+REGISTER
+
+1. See if the email/username already exists in the database
+2a. If it does, don't let them register //END
+2b. If it doesn't, let them register
+3. hash their password using bcrypt
+4. add email/username and hashed password to our database
+5. put their user information onto the session
+6. send their user information to the front end //END
+
+LOGIN
+
+1. See if the email/username already exists in the database
+2a. If it doesn't exist, don't let them login //END
+2b. If it does exist, get their hashed password from the database
+3. Compare the password they typed in with the hashed password we got from the database using bcrypt
+4. If they don't match, don't let them login //END
+5. If they do match, delete the password they typed in and the hashed password from the server (not the database)
+6. put their user information onto the session
+7. send their user information to the front end //END
+
+LOGOUT
+
+1. Front end will handle deleting the user data on the front end
+2. We need to delete the user data on session
+3. We DON'T want to delete any data from the database
+4. This means all logout needs to do is delete the session

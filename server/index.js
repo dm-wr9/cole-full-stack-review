@@ -3,6 +3,7 @@ const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
 const app = express();
+const ctrl = require("./controller");
 
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
 
@@ -28,7 +29,16 @@ massive({
   })
   .catch((err) => console.log(`Massive error: ${err}`));
 
-//TODO Endpoints
+//# login, register, add_to_cart, get_cart, delete_from _cart
+
+//# Auth endpoints
+app.post("/api/register", ctrl.register);
+app.post("/api/login", ctrl.login);
+app.delete("/api/logout", ctrl.logout);
+//# Cart endpoints
+app.get("/api/cart");
+app.post("/api/cart");
+app.delete("/api/cart");
 
 const port = SERVER_PORT || 4040;
 app.listen(port, () => console.log(`server running on port ${port}`));
